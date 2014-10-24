@@ -24,11 +24,6 @@ put '/plans/:id' =>'plans#update'
 delete '/plans/:id'=>'plans#destroy'
 
 
-get '/histories'=>'histories#index'
-post '/histories'=>'histories#create'
-
-
-
 
 
 end
