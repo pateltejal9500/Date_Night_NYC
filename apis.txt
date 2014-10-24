@@ -1,0 +1,166 @@
+ # create zipcode and dates for api calls
+  zipcode = params[:zipcode]
+  date = params[:date]
+
+  # converts zipcode to lat long for eventbrite api
+  longlat = HTTParty.get("http://zipcodedistanceapi.redline13.com/rest/hDnZEdMTiTMIdufkYObXQUY134PG6pnn2KnGYaAh4nZhRfCQ3NNTIMVLQKrW9Okc/info.json/#{zipcode}/degrees")
+
+  lat = longlat["lat"]
+  long = longlat["lng"]
+
+  # get events
+  response = HTTParty.get("https://www.eventbriteapi.com/v3/events/search/?location.within=10mi&location.latitude=#{lat}&location.longitude=#{long}&start_date.range_start=#{date}T01%3A30%3A42Z&start_date.range_end=#{date}T23%3A30%3A42Z&token=3BS25F7EIU2IIB4YWQWF")
+
+  # get 5 events, if the api is missing info autofill an error message
+  eventBritecounter = 0
+  while eventBritecounter < 6
+    if response["events"][eventBritecounter]["venue"]["location"]["address_1"] != nil
+      street = response["events"][eventBritecounter]["venue"]["location"]["address_1"]
+    else street = "Street not found"
+    end
+    if response["events"][eventBritecounter]["venue"]["location"]["city"] != nil
+      city = response["events"][eventBritecounter]["venue"]["location"]["city"]
+    else city = "City not found"
+    end
+    if response["events"][eventBritecounter]["name"]["text"] != nil
+      eventName = response["events"][eventBritecounter]["name"]["text"]
+    else eventName = "Name not found"
+    end
+    if response["events"][eventBritecounter]["description"]["text"] != nil
+      eventDescription = response["events"][eventBritecounter]["description"]["text"][0...200] + "..."
+    else eventDescription = "Description not found"
+    end
+    if response["events"][eventBritecounter]["url"] != nil
+      eventUrl = response["events"][eventBritecounter]["url"]
+    else eventUrl = "URL not found"
+    end
+
+eventful api key: PXgMsX9vnshjM5Wv
+eventfulResponse = HTTParty.get("http://api.eventful.com/json/events/search/?location=#{zipcode}&start_time=#{date}&end_time=#{date}&app_key=PXgMsX9vnshjM5Wv")
+  eventfulResponse = JSON.parse(response)
+
+  eventfulCounter = 0 
+  while eventfulCounter < 6
+    if eventfulResponse["events"]["event"][eventfulCounter]["venue_address"] != nil
+      street = eventfulResponse["events"]["event"][eventfulCounter]["venue_address"]
+    else street = "Street not found"
+    end
+    if eventfulResponse["events"]["event"][eventfulCounter]["city_name"] != nil
+      city = eventfulResponse["events"]["event"][eventfulCounter]["city_name"]
+    else city = "City not found"
+    end
+    if eventfulResponse["events"]["event"][eventfulCounter]["title"]  != nil
+      eventName = eventfulResponse["events"]["event"][eventfulCounter]["title"] 
+    else eventName = "Name not found"
+    end
+    if eventfulResponse["events"]["event"][eventfulCounter]["description"] != nil
+      eventDescription = eventfulResponse["events"]["event"][eventfulCounter]["description"][0...200] + "..."
+    else eventDescription = "Description not found"
+    end
+    if eventfulResponse["events"]["event"][eventfulCounter]["url"] != nil
+      eventUrl = eventfulResponse["events"]["event"][eventfulCounter]["url"]
+    else eventUrl = "URL not found"
+    end
+    Activity.create({
+      event_id: params[:id],
+      upvotes: 0,
+      name: eventName,
+      description: eventDescription,
+      address: street + ", " + city,
+      url: eventUrl,
+      window_id: Window.where(event_id: params[:id]).id
+      })
+    eventfulCounter +=1
+  end
+
+
+  opentableResponse = HTTParty.get("http://opentable.herokuapp.com/api/restaurants?zip=#{zipcode}")
+
+  opentableCounter = 0 
+  while opentableCounter < 6
+    if opentableResponse["restaurants"][opentableCounter]["address"]  != nil
+      street = opentableResponse["restaurants"][opentableCounter]["address"] 
+    else street = "Street not found"
+    end
+    if opentableResponse["restaurants"][opentableCounter]["city"]  != nil
+      city = opentableResponse["restaurants"][opentableCounter]["city"] 
+    else city = "City not found"
+    end
+    if opentableResponse["restaurants"][opentableCounter]["name"]  != nil
+      eventName = opentableResponse["restaurants"][opentableCounter]["name"] 
+    else eventName = "Name not found"
+    end
+    
+    eventDescription = "Eat something delicious."
+    
+    
+    if opentableResponse["restaurants"][opentableCounter]["reserve_url"] != nil
+      eventUrl = opentableResponse["restaurants"][opentableCounter]["reserve_url"]
+    else eventUrl = "URL not found"
+    end
+
+    Activity.create({
+      event_id: params[:id],
+      upvotes: 0,
+      name: eventName,
+      description: eventDescription,
+      address: street + ", " + city,
+      url: eventUrl,
+      window_id: Window.where(event_id: params[:id]).id
+      })
+
+    opentableCounter +=1
+  end
+
+
+------------
+
+
+Gracenote API: Movie Times (by date and zip)
+Key Rate Limits: 2 Calls per second; 50 Calls per day
+API key: qpchaevyfxdypsd65kta5ta5
+
+Replace startDate and zip:
+
+movies = HTTParty.get("http://data.tmsapi.com/v1/movies/showings?startDate=2014-10-11&zip=11215&api_key=qpchaevyfxdypsd65kta5ta5")    
+
+Replace [0] with variable when looping through:
+
+movie_title = movies[0]["title"] 
+short_description = movies[0]["shortDescription"]  
+showtimes = movies[0]["showtimes"]                       
+theater_name = movies[0]["showtimes"][0]["theatre"]["name"]   
+date = movies[0]["showtimes"][0]["dateTime"].split("T")[0] 
+time = movies[0]["showtimes"][0]["dateTime"].split("T")[1]  
+
+
+NY Art Beat
+No API key needed
+http://www.nyartbeat.com/resources/doc/api
+Only format is XML but can get upcoming events, free or by location
+DateStart sample call:
+response = HTTParty.get("http://www.nyartbeat.com/list/event_comingsoon.en.xml")    
+date_start = response["Events"]["Event"][0]["DateStart"]
+
+
+NYC Events API
+Our app id: deca34d6
+App key: ce50f87131ec1e3bee8cb6da6d8615fb
+Events by zip code sample call: https://api.cityofnewyork.us/calendar/v1/search.htm?app_id=deca34d6&app_key=ce50f87131ec1e3bee8c...
+
+
+
+
+
+OpenTable API
+
+Replace zip:
+
+restaurants = HTTParty.get("http://opentable.herokuapp.com/api/restaurants?zip=11215")
+
+name = restaurants["restaurants"][0]["name"]
+address = restaurants["restaurants"][0]["address"]  
+city = restaurants["restaurants"][0]["city"] 
+state = restaurants["restaurants"][0]["state"] 
+zip = restaurants["restaurants"][0]["postal_code"]  
+reservation_url = restaurants["restaurants"][0]["reserve_url"]
