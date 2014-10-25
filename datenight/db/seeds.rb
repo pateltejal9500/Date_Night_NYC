@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Neighborhood.delete_all
 
 the_bronx = Neighborhood.create({
 name: "The Bronx",
