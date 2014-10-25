@@ -5,7 +5,6 @@ get '/login'=>'session#new'
 post "/session"=>'session#create'
 delete "/session"=>'session#destroy'
 
-
 get '/users/:id'=>'users#show'
 post '/users'=>'users#create'
 delete '/users'=>'users#destroy'
@@ -13,8 +12,6 @@ delete '/users'=>'users#destroy'
 get '/activities'=>'activities#index'
 post '/activities'=>'activities#create'
 delete '/activities/:id'=>'activities#destroy'
- 
-
 
 post '/plans'=>'plans#create'
 get '/plans/:id'=>'plans#show'

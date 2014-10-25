@@ -1,1 +1,39 @@
-<h1>Date Night NYC</h1>
+<h3>Existing Users Sign In</h3>
+<form action="/session" method="POST">
+	<label>
+		Email:
+	</label>
+	<input name="email" type="email" placeholder="Email Address" required />
+	
+	<label>
+		Password:
+	</label>
+	<input name="password" type="password" placeholder="Password" required />
+	<% if @error %>
+	<p style='color: red;'>Incorrect email or password. Please try again!</p>
+	<%end %>
+	<input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+	<button>Sign In</button>
+</form>
+
+<h3>Create an Account</h3>
+<label>
+	First Name:
+</label>
+<form action="/users" method="POST">
+	<input type="text" name="fname" placeholder="First Name" />
+	<label>
+		Last Name:
+	</label>			
+	<input type="text" name="lname" placeholder="Last Name" />
+	<label>
+		Email:
+	</label>			
+	<input type="email" name="email" placeholder="Email Address">
+	<label>
+		Password:
+	</label>			
+	<input type="password" name="password" placeholder="Password">
+	<input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+	<button>Register</button>
+</form>
