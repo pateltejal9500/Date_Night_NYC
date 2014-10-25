@@ -1,12 +1,12 @@
 $(function(){
- datesLoad1(1)
+ datesLoad1()
 
 
 //when user logs in connect this to the user
 
-function datesLoad1(id){
+function datesLoad1(){
 
-  $.get("/users/"+id, function(user){
+  $.get("/homepage", function(user){
     console.log(user.plans.length)
      var innards = "<div class='dropdown'><button class='btn btn-default dropdown-toggle style' type='button' id='dropdownMenu1' data-toggle='dropdown'>DATES</button><ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>"
     if (user.plans.length != 0){
