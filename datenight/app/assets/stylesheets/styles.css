@@ -1,1 +1,16 @@
-#droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+#drop { width: 150px; height: 150px; border: 1px black; }
+.size{
+  width: 250px;
+}
+
+#new{
+  top: 0px;
+  height: 300px;
+}
+
+#board{
+  bottom: 0px;
+  height: 200px;
+  width: 200px;
+
+}
