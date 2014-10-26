@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     if @user
       respond_to do |format|
       format.json {render :json => rest}
-      format.html{render :index}
+      format.html{render '/plans'}
     end
   else
     redirect_to '/login'

@@ -8,7 +8,7 @@ class SessionController < ApplicationController
 		@user = User.find_by(email: params[:email])
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
-			redirect_to '/homepage'
+			redirect_to '/plans'
 		else 
 			@error = true
 			render :index

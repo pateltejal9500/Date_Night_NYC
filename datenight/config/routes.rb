@@ -15,7 +15,7 @@ delete '/activities/:id'=>'activities#destroy'
 
 post '/plans'=>'plans#create'
 get '/plans/:id'=>'plans#show'
-get '/homepage'=>'plans#index'
+get '/plans'=>'plans#index'
 get '/plans/:id/edit'=>'plans#edit'
 put '/plans/:id' =>'plans#update'
 delete '/plans/:id'=>'plans#destroy'
