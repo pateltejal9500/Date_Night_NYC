@@ -21,6 +21,9 @@ put '/plans/:id' =>'plans#update'
 delete '/plans/:id'=>'plans#destroy'
 
 
+get '/neighborhoods' =>'neighborhoods#index'
+
+get '/events'=>'events#index'
 
 
 end
