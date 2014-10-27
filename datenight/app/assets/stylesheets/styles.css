@@ -1,16 +1,60 @@
-#drop { width: 150px; height: 150px; border: 1px black; }
-.size{
+@import url(http://fonts.googleapis.com/css?family=Wire+One|Oswald:400,700,300);
+
+#splashpage { 
+/*  background: url('../skyline3.jpg') no-repeat center center fixed; 
+*/
+/* background: url('../space_bg.gif') repeat; */
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+background-color: black;
+color: #fff;
+transition: background 2s ease-in-out;
+-moz-transition: background 2s ease-in-out;
+-webkit-transition: background 2s ease-in-out;
+}
+
+#splashpage h1 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  text-align: center;
+  font-size: 100px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#splashpage h3 {
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+#splashpage button {
+ margin-left: 40%;
+}
+
+#drop { 
+  width: 150px; 
+  height: 150px;  
+}
+
+.size {
   width: 250px;
 }
 
-#new{
+#new {
   top: 0px;
   height: 300px;
 }
 
-#board{
+#board {
   bottom: 0px;
   height: 200px;
-  width: 200px;
+  width: 300px;
+  border: 1px black;
 
+}
+
+#middle {
+ /* background-color:rgba(255,0,0,0.5);*/
 }
