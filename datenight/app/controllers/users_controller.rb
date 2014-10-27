@@ -7,12 +7,8 @@ class UsersController < ApplicationController
 			email: params["email"],
 			password: params["password"],
 		}
-
 		User.create(users)
-
 		redirect_to "/login"
 	end
-
-
 
 end

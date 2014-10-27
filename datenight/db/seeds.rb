@@ -454,111 +454,110 @@
 
 
 
-hot_air_balloon_ride = Event.create({
-name: "Hot Air Balloon Ride",
-url: "http://www.abovethecloudsinc.com/",
-rating: 5
-  })    
+# hot_air_balloon_ride = Event.create({
+# name: "Hot Air Balloon Ride",
+# url: "http://www.abovethecloudsinc.com/",
+# rating: 5
+#   })    
 
-walking_tour = Event.create({
-name: "Go on a Walking Tour",
-url: "http://www.freetoursbyfoot.com/new-york-tours/",
-rating: 3
-  }) 
+# walking_tour = Event.create({
+# name: "Go on a Walking Tour",
+# url: "http://www.freetoursbyfoot.com/new-york-tours/",
+# rating: 3
+#   }) 
 
-art_after_dark = Event.create({
-name: "Visit Museums After Dark",
-url: "http://www.newyork.com/articles/attractions/museums-after-dark-66062/",
-rating: 5  
-}) 
+# art_after_dark = Event.create({
+# name: "Visit Museums After Dark",
+# url: "http://www.newyork.com/articles/attractions/museums-after-dark-66062/",
+# rating: 5  
+# }) 
 
-dinner_movies = Event.create({
-name: "Eat Dinner at the Movies",
-url: "http://nypost.com/2014/01/15/movie-theaters-with-dining-options-on-the-rise-in-the-city/",
-rating: 4
-  })
+# dinner_movies = Event.create({
+# name: "Eat Dinner at the Movies",
+# url: "http://nypost.com/2014/01/15/movie-theaters-with-dining-options-on-the-rise-in-the-city/",
+# rating: 4
+#   })
 
-bowling = Event.create({
-name: "Go Bowling",
-url: "http://www.nyc.com/best-of-new-york/best_bowling_alleys_in_new_york.s1171/",
-rating: 3
-  })
+# bowling = Event.create({
+# name: "Go Bowling",
+# url: "http://www.nyc.com/best-of-new-york/best_bowling_alleys_in_new_york.s1171/",
+# rating: 3
+#   })
   
-bocce = Event.create({
-name: "Bocce Ball and Beers",
-url: "http://www.newyork.com/articles/attractions/10-best-nyc-bars-with-games-drink-play-fun-35341/",
-rating: 4
-  })  
+# bocce = Event.create({
+# name: "Bocce Ball and Beers",
+# url: "http://www.newyork.com/articles/attractions/10-best-nyc-bars-with-games-drink-play-fun-35341/",
+# rating: 4
+#   })  
 
-shuffleboard = Event.create({
-name: "Play Some Shuffleboard",
-url: "http://www.yelp.com/search?find_desc=Bars+With+Shuffleboard&find_loc=New+York%2C+NY",  
-rating: 5
-  })
+# shuffleboard = Event.create({
+# name: "Play Some Shuffleboard",
+# url: "http://www.yelp.com/search?find_desc=Bars+With+Shuffleboard&find_loc=New+York%2C+NY",  
+# rating: 5
+#   })
 
-waterfront_walks = Event.create({
-name: "Take a Waterfront Stroll",
-url: "http://www.fodors.com/world/north-america/usa/new-york/new-york-city/feature_30009.html",
-rating: 4
-  })
+# waterfront_walks = Event.create({
+# name: "Take a Waterfront Stroll",
+# url: "http://www.fodors.com/world/north-america/usa/new-york/new-york-city/feature_30009.html",
+# rating: 4
+#   })
 
-ferry_ride = Event.create({
-name: "Take a Ferry Ride",
-url: "http://www.siferry.com/",
-rating: 4
-  })
+# ferry_ride = Event.create({
+# name: "Take a Ferry Ride",
+# url: "http://www.siferry.com/",
+# rating: 4
+#   })
 
-botanical_garden = Event.create({
-name: "Evening Events at New York City's Botanical Gardens",
-url: "http://www.timeout.com/newyork/attractions/the-best-gardens-in-nyc-parks-gardens",
-rating: 5
-  })
+# botanical_garden = Event.create({
+# name: "Evening Events at New York City's Botanical Gardens",
+# url: "http://www.timeout.com/newyork/attractions/the-best-gardens-in-nyc-parks-gardens",
+# rating: 5
+#   })
 
-batting_cages = Event.create({
-  name: "Go to the Batting Cages",
-  url: "http://newyork.cbslocal.com/top-lists/best-batting-cages-in-new-york/",
-  rating: 3
-  })
+# batting_cages = Event.create({
+#   name: "Go to the Batting Cages",
+#   url: "http://newyork.cbslocal.com/top-lists/best-batting-cages-in-new-york/",
+#   rating: 3
+#   })
 
-planetarium = Event.create({
-  name: "Go to the Planetarium",
-  url: "http://www.amnh.org/our-research/hayden-planetarium",
-  rating: 3
-  })
+# planetarium = Event.create({
+#   name: "Go to the Planetarium",
+#   url: "http://www.amnh.org/our-research/hayden-planetarium",
+#   rating: 3
+#   })
 
-golf = Event.create({
-  name: "Go to the Driving Range",
-  url: "http://www.nycgo.com/articles/tee-time-6-nyc-driving-ranges",
-  rating: 3
-  })
+# golf = Event.create({
+#   name: "Go to the Driving Range",
+#   url: "http://www.nycgo.com/articles/tee-time-6-nyc-driving-ranges",
+#   rating: 3
+#   })
 
-horseback_riding = Event.create({
-  name: "Go Horseback Riding",
-  url: "http://nymag.com/nymetro/arts/columns/topfive/n_8814/",
-  rating: 5
-  })
+# horseback_riding = Event.create({
+#   name: "Go Horseback Riding",
+#   url: "http://nymag.com/nymetro/arts/columns/topfive/n_8814/",
+#   rating: 5
+#   })
 
-cooking_class = Event.create({
-  name: "Take a Cooking Class for Two",
-  url: "http://newyork.cbslocal.com/top-lists/the-7-best-cooking-classes-in-n-y-n-j/",
-  rating: 5
-  })
+# cooking_class = Event.create({
+#   name: "Take a Cooking Class for Two",
+#   url: "http://newyork.cbslocal.com/top-lists/the-7-best-cooking-classes-in-n-y-n-j/",
+#   rating: 5
+#   })
 
-ice_skating = Event.create({
-  name: "Go Ice Skating",
-  url: "http://manhattan.about.com/od/governmentandpolitics/tp/iceskatingnyc.htm",
-  rating: 3
-  })
+# ice_skating = Event.create({
+#   name: "Go Ice Skating",
+#   url: "http://manhattan.about.com/od/governmentandpolitics/tp/iceskatingnyc.htm",
+#   rating: 3
+#   })
 
-roller_skating = Event.create({
-  name: "Go Roller Skating",
-  url: "http://www.timeout.com/newyork/things-to-do/where-to-roller-skate-roller-skating-rinks-and-parties-i...",
-  rating: 4
-  })
+# roller_skating = Event.create({
+#   name: "Go Roller Skating",
+#   url: "http://www.timeout.com/newyork/things-to-do/where-to-roller-skate-roller-skating-rinks-and-parties-i...",
+#   rating: 4
+#   })
 
-rock_climbing = Event.create({
-  name: "Go Rock Climbing",
-  url: "http://newyork.cbslocal.com/guide/indoor-climbing-10-places-to-get-your-rock-on/",
-  rating: 3
-  })
-Show less
+# rock_climbing = Event.create({
+#   name: "Go Rock Climbing",
+#   url: "http://newyork.cbslocal.com/guide/indoor-climbing-10-places-to-get-your-rock-on/",
+#   rating: 3
+#   })

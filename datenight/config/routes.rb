@@ -1,29 +1,24 @@
 Rails.application.routes.draw do
-root 'session#index'
+  root 'session#index'
 
-get '/login'=>'session#new'
-post "/session"=>'session#create'
-delete "/session"=>'session#destroy'
+  get '/login'=>'session#new'
+  post "/session"=>'session#create'
+  delete "/session"=>'session#destroy'
 
-get '/users/:id'=>'users#show'
-post '/users'=>'users#create'
-delete '/users'=>'users#destroy'
+  post '/users'=>'users#create'
 
-get '/activities'=>'activities#index'
-post '/activities'=>'activities#create'
-delete '/activities/:id'=>'activities#destroy'
+  post '/activities'=>'activities#create'
 
-post '/plans'=>'plans#create'
-get '/plans/:id'=>'plans#show'
-get '/plans'=>'plans#index'
-get '/plans/:id/edit'=>'plans#edit'
-put '/plans/:id' =>'plans#update'
-delete '/plans/:id'=>'plans#destroy'
+  post '/plans'=>'plans#create'
+  get '/plans/:id'=>'plans#show'
+  get '/plans'=>'plans#index'
+  put '/plans/:id' =>'plans#update'
+  delete '/plans/:id'=>'plans#destroy'
 
+  get '/neighborhoods' =>'neighborhoods#index'
 
-get '/neighborhoods' =>'neighborhoods#index'
+  get '/events'=>'events#index'
 
-get '/events'=>'events#index'
-
+  get '/messages'=>'messages#index'
 
 end
