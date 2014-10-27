@@ -456,112 +456,109 @@
 
 hot_air_balloon_ride = Event.create({
 name: "Hot Air Balloon Ride",
-description: "Experience what wondrous sights are possible from the unique perspective of a New York City Balloon Ride! ",
-address: "276 Broadway",
-url: "http://www.newyorkcityballoonrides.com/",
-neighborhood_id: 56   
+url: "http://www.abovethecloudsinc.com/",
+rating: 5
   })    
 
-midtown_night_tour = Event.create({
-name: "Midtown Manhattan Night Tour",
-description: "New York is a skyscraper city and there is no better time to view Manhattan’s icons than after the sun sets and the lights go on.",
-address: "112 Suffolk Street",
-url: "http://www.freetoursbyfoot.com/new-york-tours/walking-tours/manhattan-night-tour/",
-neighborhood_id: 45   
+walking_tour = Event.create({
+name: "Go on a Walking Tour",
+url: "http://www.freetoursbyfoot.com/new-york-tours/",
+rating: 3
   }) 
 
-ghosts_ny_tour = Event.create({
-name: "Ghosts of New York Walking Tours",
-description: "Licensed guides provide stories of ghosts, antique sites, ghostly sightings, scandalous tales, haunted places, and more.",
-address: "211 East 33 Street",
-url: "http://www.ghostsofny.com/",
-neighborhood_id: 45
-  })
- 
 art_after_dark = Event.create({
-name: "Art After Dark at the Guggenheim",
-description: "Art After Dark is a series of seasonal events at the Guggenheim Museum that members enjoy for free.",
-address: "1071 Fifth Avenue @ 89th Street",
-url: "http://www.guggenheim.org/new-york/calendar-and-events/series/art-after-dark",
-neighborhood_id: 60
-  }) 
+name: "Visit Museums After Dark",
+url: "http://www.newyork.com/articles/attractions/museums-after-dark-66062/",
+rating: 5  
+}) 
 
-nitehawk_cinema = Event.create({
-name: "Nitehawk Cinema",
-description: "New York's original cinema eatery; an Independent movie house bringing a selective approach to film, food, and drinks.",
-address: "136 Metropolitan Avenue", 
-url: "http://www.nitehawkcinema.com/",
-neighborhood_id: 24
+dinner_movies = Event.create({
+name: "Eat Dinner at the Movies",
+url: "http://nypost.com/2014/01/15/movie-theaters-with-dining-options-on-the-rise-in-the-city/",
+rating: 4
   })
 
-brooklyn_bowl = Event.create({
-name: "Brooklyn Bowl",
-description: "Brooklyn Bowl integrates a premier performance venue, food by Blue Ribbon, bars which feature local craft brewed beers, and 16 bowling lanes which give guests a unique place to relax, eat, drink and watch a performance.",
-address: "61 Wythe Avenue",
-url: "http://www.brooklynbowl.com/",
-neighborhood_id: 24
+bowling = Event.create({
+name: "Go Bowling",
+url: "http://www.nyc.com/best-of-new-york/best_bowling_alleys_in_new_york.s1171/",
+rating: 3
   })
   
-union_hall = Event.create({
-name: "Bocce Ball at Union Hall",
-description: "Union Hall offers cozy firesides, a stately library, two indoor bocce courts, outdoor garden seating, and a downstairs bar and music venue.",
-address: "702 Union Street",
-url: "http://www.unionhallny.com/",
-neighborhood_id: 19
+bocce = Event.create({
+name: "Bocce Ball and Beers",
+url: "http://www.newyork.com/articles/attractions/10-best-nyc-bars-with-games-drink-play-fun-35341/",
+rating: 4
   })  
 
-royal_palms = Event.create({
-name: "The Royal Palms Shuffleboard Club",
-description: "The Royal Palms is a walk-in shuffleboard club and courts are rented for $40/hr on a first come first served basis.",
-address: "514 Union Street",
-url: "http://www.royalpalmsshuffle.com/",
-neighborhood_id: 16     
+shuffleboard = Event.create({
+name: "Play Some Shuffleboard",
+url: "http://www.yelp.com/search?find_desc=Bars+With+Shuffleboard&find_loc=New+York%2C+NY",  
+rating: 5
   })
 
-brooklyn_bridge_park = Event.create({
-name: "Brooklyn Bridge Park",
-description: "Brooklyn Bridge Park is a waterfront park along the East River in New York City with breathtaking views of Manhattan, the Brooklyn Bridge, the Statue of Liberty and Ellis Island. Perfect for a romantic, late-night stroll.",
-address: "Furman Street between Atlantic Avenue and Fulton Ferry Landing",
-url: "http://www.brooklynbridgepark.org/",
-neighborhood_id: 6
+waterfront_walks = Event.create({
+name: "Take a Waterfront Stroll",
+url: "http://www.fodors.com/world/north-america/usa/new-york/new-york-city/feature_30009.html",
+rating: 4
   })
 
-brooklyn_heights_promenade = Event.create({
-name: "Brooklyn Heights Promenade",
-description: "Tree-lined walkway offers views of the Statue of Liberty, Brooklyn Bridge & Manhattan skyline.",
-address: "Brooklyn Heights Promenade (above the BQE between Joralemon and Cranberry Streets)",
-url: "http://www.nycgovparks.org/parks/brooklyn-heights-promenade/map", 
-neighborhood_id: 6
-  })
-
-staten_island_ferry = Event.create({
-name: "Staten Island Ferry Ride",
-description: "The 5 mile, 25 minute ride provides a majestic view of New York Harbor and a no-hassle,  romantic, boat ride, for free! One guide book calls it 'One of the world's greatest (and shortest) water voyages.'",
-address: "4 Whitehall Street",  
+ferry_ride = Event.create({
+name: "Take a Ferry Ride",
 url: "http://www.siferry.com/",
-neighborhood_id: 33
+rating: 4
   })
 
-go_karts = Event.create({
-name: "Staten Island Go Karts",
-description: "Take a few laps around the track at Staten Island's only go kart track. If you don't like driving, play around of mini-golf or practice your swing at the batting cages.",
-address: "215 Schmidts Lane",
-url: "http://www.sigokarts.com/",
-neighborhood_id: 88 
+botanical_garden = Event.create({
+name: "Evening Events at New York City's Botanical Gardens",
+url: "http://www.timeout.com/newyork/attractions/the-best-gardens-in-nyc-parks-gardens",
+rating: 5
   })
 
-nybg = Event.create({
-name: "The New York Botanical Garden",
-description: "As if 50 gardens and plant collections weren't enough, the NYBG also has a wide variety of events happening every day. Check the events calendar for seasonal programming.",  
-address: "2900 Southern Boulevard",
-url: "http://www.nybg.org/",
-neighborhood_id: 1
+batting_cages = Event.create({
+  name: "Go to the Batting Cages",
+  url: "http://newyork.cbslocal.com/top-lists/best-batting-cages-in-new-york/",
+  rating: 3
   })
 
-museum_moving_image = Event.create({
-name: "Museum of the Moving Image",
-description: "With live music for silent films, restored prints from the world's leading archives, and outstanding new films from the international festival circuit, Museum programs are recognized for their quality as well as their scope.",
-address: "36-01 35th Avenue",
-url: "http://www.movingimage.us/",
-neighborhood_id: 65
+planetarium = Event.create({
+  name: "Go to the Planetarium",
+  url: "http://www.amnh.org/our-research/hayden-planetarium",
+  rating: 3
   })
+
+golf = Event.create({
+  name: "Go to the Driving Range",
+  url: "http://www.nycgo.com/articles/tee-time-6-nyc-driving-ranges",
+  rating: 3
+  })
+
+horseback_riding = Event.create({
+  name: "Go Horseback Riding",
+  url: "http://nymag.com/nymetro/arts/columns/topfive/n_8814/",
+  rating: 5
+  })
+
+cooking_class = Event.create({
+  name: "Take a Cooking Class for Two",
+  url: "http://newyork.cbslocal.com/top-lists/the-7-best-cooking-classes-in-n-y-n-j/",
+  rating: 5
+  })
+
+ice_skating = Event.create({
+  name: "Go Ice Skating",
+  url: "http://manhattan.about.com/od/governmentandpolitics/tp/iceskatingnyc.htm",
+  rating: 3
+  })
+
+roller_skating = Event.create({
+  name: "Go Roller Skating",
+  url: "http://www.timeout.com/newyork/things-to-do/where-to-roller-skate-roller-skating-rinks-and-parties-i...",
+  rating: 4
+  })
+
+rock_climbing = Event.create({
+  name: "Go Rock Climbing",
+  url: "http://newyork.cbslocal.com/guide/indoor-climbing-10-places-to-get-your-rock-on/",
+  rating: 3
+  })
+Show less
