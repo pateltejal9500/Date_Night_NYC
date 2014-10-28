@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :authorize_user
+
   def index
      @user = User.find_by(id: session[:user_id])
      if params[:email]
@@ -8,9 +10,7 @@ class MessagesController < ApplicationController
       email = @user.email
       subject = "Don't forget"
     end
-
-    if @user 
-    response = HTTParty.post "https://sendgrid.com/api/mail.send.json", 
+ 
     :body => {
     "api_user" => "bdargan",
     "api_key" => "pjigglies915",
@@ -23,10 +23,16 @@ class MessagesController < ApplicationController
       format.json { render :json => @user}
       format.html { render :index }
     end
-    
-    else
-      redirect_to '/login'
-    end
 
   end
+  
+  private
+
+    def authorize_user
+    @user = User.find_by(id: session[:user_id])
+    unless @user
+      redirect_to '/login'
+    end
+  end
+
 end 

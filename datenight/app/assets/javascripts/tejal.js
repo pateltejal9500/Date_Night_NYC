@@ -19,22 +19,51 @@ function splash(){
 
  datesLoad1()
  makeNeighboorhood1()
+ userProfileListener()
+
+ //profile button
+function userProfileListener() {
+$('.user_icon').on('click', function(e) {
+  $(".profile").html("")
+  $("#new").html("")
+  $("#board").html("")
+  e.preventDefault();
+  var id = $(this).parent().attr("id");
+    $.ajax({
+     url:'/plans',
+      type: 'GET'
+      }).done(function(response){
+      var plans = response["plans"];
+      $('div.profile').append("<h2>Welcome, "  + response["fname"] + "!</h2>" + "<h3>Your History of Plans:</h3>"); 
+      for (var i = 0; i < plans.length; i++) {
+        if (plans[i].done == true){
+        $('div.profile').append("<li> Date: " +plans[i].date + "<br>" + " Rating: "+ plans[i].rating+" Comment: "+plans[i].comment+"</li>")
+          $.ajax({
+            url: "/plans/"+plans[i].id,
+            type: 'GET',
+            }).done(function(response){
+            activities = response.activities
+            for (var i= 0; i < activities.length; i ++){ 
+                $('div.profile').append("<li>Activities: " + activities[i].name + "<br></li>");
+                
+            }
+          })
+          }
+          } 
+        })
+    
+    })
+  }
 
 //loading the date tab where you can add a new date or see all the previous ones
 function datesLoad1(){
   $.get("/plans", function(user){
     var innards = "<div class='dropdown'><button class='btn btn-default dropdown-toggle style' type='button' id='dropdownMenu1' data-toggle='dropdown'>DATES</button><ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>"
-    if (user.plans.length != 0){
       for (var i =0; i < user.plans.length; i ++){
         if (user.plans[i].done == false){
-        innards += "<li role='presentation'><a id=" + user.plans[i].id + " class ='contact' role='menuitem' tabindex='-1' href='#'>" + user.plans[i].date+ "</a></li>"
+          innards += "<li role='presentation'><a id=" + user.plans[i].id + " class ='contact' role='menuitem' tabindex='-1' href='#'>" + user.plans[i].date+ "</a></li>"
         }
-      }
-
-    } else {
-      innards += "<li role='presentation'><a class ='contact' role='menuitem' tabindex='-1'> NO CURRENT DATES</a></li>"
-    }
-
+      } 
     innards += "<li role='presentation' class='divider'></li><li role='presentation'><a class='newDate'role='menuitem' tabindex='-1' href='#'>NEW DATE</a></li></div>"
 
     $("#date").html(innards)  
@@ -43,12 +72,14 @@ function datesLoad1(){
        informationForOne(user.plans[i].id)
       }  
   })
+
 }
 
 //this is making all the dates under date clickable letting you view them on the second page
 function informationForOne(id){
   $("#"+id).click(function(event){
     $("#new").html("")
+    $(".profile").html("")
     $.get("/plans/"+id, function(plan){
       for (var i = 0; i < plan.activities.length; i++){
       $("#new").append("<div class='results'><p class='name'><strong>"+plan.activities[i].name+"</strong></p>Rating:<p class='rating'>"+plan.activities[i].rating+"</p><a class='url' href='"+plan.activities[i].url+"' target='_blank'>MORE INFO</a></div>") 
@@ -64,6 +95,7 @@ function informationForOne(id){
 //when you make a new date it clears all the date on the DOM
 function newDate1(){
   $(".newDate").click(function(event){
+    $(".profile").html("")
     $("#new").html("")
     $("#board").html("")
     makeNeighboorhood1()
@@ -145,9 +177,9 @@ function secondPage(neighborhood_id,date,info,id){
   $("#new").append("<button id='save'>SAVE</button><button id='edit'>EDIT DATE</button><button id='delete'>DELETE</button>")
   $("#board").html("<button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#invite'>INVITE</button><button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#remind'>EMAIL ME</button><button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#done'>Done</button>")
   done(id)
-  invite(date)
+  invite()
   remind(date)
-  informationstuff()
+  informationstuff(date)
   savingInformation(neighborhood_id,date,id)
   editInformation(neighborhood_id,date,id)
   deletingButton(id)
@@ -216,11 +248,16 @@ function doneDate(id){
   })
 }
 
-//this is going to save the information(plan and activity after plan is created with an id, if you already have this saved it will delete it first
-//and then save it
+//this is going to save the information(plan and activity after plan is created with an id, if you already have this saved it will not create one
 function savingInformation(neighborhood_id, date,id){
   $("#save").click(function(event){
-    deleting(id)
+    if(id){
+       $("#new").html("")
+          $("#board").html("")
+    datesLoad1()
+     makeNeighboorhood1()
+
+    } else {
 
    $.ajax({
      url: '/plans',
@@ -246,37 +283,37 @@ function savingInformation(neighborhood_id, date,id){
      makeNeighboorhood1()
     }
   })
+ }
  })
+
 }
 
 //this is adding the date and the information on the modals that require it
-function informationstuff(){
+function informationstuff(date){
   var info = $(".results")
-  if ($(".theDate")[0]){
-    $(".here").append($(".theDate")[0].innerText)
-  }
+
+    var innards = "DATE: " + date
+  
   for (var i = 0; i < info.length; i++){
-    $(".here").append("<br>"+info[i].innerHTML)
+    innards += " \nName: "+ info[i].children[0].innerText+ " \nRating: " + info[i].children[1].innerText+" \nLink: " +info[0].children[2].href
    }
+   $(".here").val(innards)
 }
 
 //this is the modal to invite someone to the event
 
-function invite(date){
-  $("#board").append("<div class='modal fade' id='invite' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'><label>Email: </label><input type='email' name='email'></h4></div><div class='modal-body here inviteBody'></div><div class='modal-footer'><button type='button' class='btn btn-default inviteClose' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary invite'>INVITE</button></div></div></div></div>") 
-  inviteSomeone(date)
+function invite(){
+  $("#board").append("<div class='modal fade' id='invite' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'><label>Email: </label><input type='email' name='email'></h4></div><div class='modal-body inviteBody'><textarea id = 'textinvite'class='here' rows='4' cols='50' placeholder='comments'></textarea></div><div class='modal-footer'><button type='button' class='btn btn-default inviteClose' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary invite'>INVITE</button></div></div></div></div>") 
+  inviteSomeone()
 }
 
 //this is going to the served with the information that wants to be sent in the email
-function inviteSomeone(date){
+function inviteSomeone(){
  $(".invite").click(function(event){
-  email = $("input[name='email']").val()
-  information = $(".inviteBody")[0].children
-  var innards = "Join me"
-  for (var i= 0; i < information.length; i ++){
-    innards += " Date: "+ date + " Name: "+information[i+1].innerText+" Rating: "+information[i+2].innerText+ " Link: "+information[i+3].href+" "
-      i = i + 3
-  }
+  var email = $("input[name='email']").val()
+  var innards = $("#textinvite").val()
+
+
   $.ajax({
     url: "/messages",
     type: "GET",
@@ -291,7 +328,7 @@ function inviteSomeone(date){
 
 //this is the modal if you want to remind yourself about the date
 function remind(date){
- $("#board").append("<div class='modal fade' id='remind' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>EMAIL ME</h4></div><div class='modal-body here emailBody'></div><div class='modal-footer'><button type='button' class='btn btn-default closeMe' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary email'>EMAIL ME</button></div></div></div></div>")
+ $("#board").append("<div class='modal fade' id='remind' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>EMAIL ME</h4></div><div class='modal-body emailBody'><textarea id = 'textme' class='here' rows='4' cols='50' placeholder='comments'></textarea></div><div class='modal-footer'><button type='button' class='btn btn-default closeMe' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary email'>EMAIL ME</button></div></div></div></div>")
    remindMe(date)
 }
 
@@ -299,20 +336,16 @@ function remind(date){
 //this will send the info to the server for the email reminding you
 function remindMe(date){
   $(".email").click(function(event){
-   information = $(".emailBody")[0].children
-   var innards = "Remember"
-   for (var i= 0; i < information.length; i ++){
-    innards += " Date: "+ date + " Name: "+information[i+1].innerText+" Rating: "+information[i+2].innerText+ " Link: "+information[i+3].href+" "
-      i = i + 3
+  var innards = $("#textme").val()
+  $.ajax({
+    url: "/messages",
+    type: "GET",
+    data: {information: innards},
+    success: function(result){
+    
+      $(".closeMe").click()
     }
-    $.ajax({
-      url: "/messages",
-      type: "GET",
-      data:  {information: innards},
-      success: function(result){
-        $(".closeMe").click()
-      }
-    })
+  })
   })
 }
 

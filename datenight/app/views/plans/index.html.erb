@@ -1,12 +1,15 @@
-
-<div class="container">
+<div class="top_nav">
   <div id="date"></div>
-<div class="row">
+  <a href="#" alt="User Profile" title="User Profile" class="user_icon"><img src="./images/user_icon.png" alt="User Profile" title="User Profile"></a>
+  <form action="/session" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+      <button class="btn btn-default">Log Out</button>
+    </form>
+</div>
+<h1>Date Night NYC</h1>
+<div class="row"> 
+<div class="profile"></div> 
 <div id ='new' class="col-md-4 size"></div>
 <div id ='board' class="col-md-6 col-md-offset-2 size"></div>
-
-</div>
-
-
-
 </div>

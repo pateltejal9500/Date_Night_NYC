@@ -1,9 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Wire+One|Oswald:400,700,300);
 
+body {
+background: url('../images/construction_wall.jpg') no-repeat center center fixed; 
+color: white;
+}
+
 #splashpage { 
-/*  background: url('../skyline3.jpg') no-repeat center center fixed; 
-*/
-/* background: url('../space_bg.gif') repeat; */
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -33,7 +35,7 @@ transition: background 2s ease-in-out;
  margin-left: 40%;
 }
 
-#drop { 
+/*#drop { 
   width: 150px; 
   height: 150px;  
 }
@@ -53,8 +55,80 @@ transition: background 2s ease-in-out;
   width: 300px;
   border: 1px black;
 
-}
+}*/
 
 #middle {
  /* background-color:rgba(255,0,0,0.5);*/
 }
+
+.top_nav {
+  background-color: rgba(0, 1, 0, 0.7);  
+  text-align: right;
+  color: white;
+  height: 50px;
+  margin-left: -85px;
+  margin-right: -68px;
+  padding-left: 25px;
+  padding-top: 5px;
+  padding-right: 10px;
+}
+
+.top_nav img {
+  height: 35px;
+}
+
+.top_nav form {
+  display: inline-block;
+}
+
+.top_nav button {
+  height: 25px;
+  font-size: 12px;
+}
+
+#date {
+  float: left;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  text-align: center;
+  font-size: 100px;
+  color: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+button.search {
+  text-transform: uppercase;
+  height: 200px;
+  width: 200px;
+  margin-top: 50px;
+  margin-left: 220%;
+  border: 1px white;
+  border-radius: 100px;
+  background-color: red;
+  color: white;
+  font-size: 50px;
+}
+
+/*.neighborhood {
+  height: 25px;
+  background-color: white;
+  color: black;
+  margin-left: 10%;
+}
+
+.results {
+background-color: white;
+border-radius: 10px;
+color: black;
+}*/
+
+/*.name {
+background-color: white;
+border-radius: 10px;
+color: black;
+}*/

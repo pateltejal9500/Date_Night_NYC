@@ -14,13 +14,20 @@ class EventsController < ApplicationController
     third = resultsMixed[2]
     stuff = [first,second,third,firstevent, secondevent]
     @user = User.find_by(id: session[:user_id])
-    if @user
+   
       respond_to do |format|
         format.json {render :json => stuff}
         format.html{render '/plans'}
       end
-    else
+  end
+
+    private
+
+    def authorize_user
+    @user = User.find_by(id: session[:user_id])
+    unless @user
       redirect_to '/login'
     end
   end
-end
+
+end 
