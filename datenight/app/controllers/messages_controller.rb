@@ -10,10 +10,11 @@ class MessagesController < ApplicationController
       email = @user.email
       subject = "Don't forget"
     end
- 
+
+    response = HTTParty.post "https://sendgrid.com/api/mail.send.json",
     :body => {
-    "api_user" => "bdargan",
-    "api_key" => "pjigglies915",
+    "api_user" => ENV['SENDGRID_API_USER'],
+    "api_key" => ENV['SENDGRID_API_password'],
     "to" => "#{email}",
     "from" => "#{@user.email}",
     "subject" => "#{subject}",
@@ -25,7 +26,7 @@ class MessagesController < ApplicationController
     end
 
   end
-  
+
   private
 
     def authorize_user

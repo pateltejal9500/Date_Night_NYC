@@ -37,14 +37,14 @@ $('.user_icon').on('click', function(e) {
       $('div.profile').append("<h2>Welcome, "  + response["fname"] + "!</h2>" + "<h3>Your History of Plans:</h3>"); 
       for (var i = 0; i < plans.length; i++) {
         if (plans[i].done == true){
-        $('div.profile').append("<li> Date: " +plans[i].date + "<br>" + " Rating: "+ plans[i].rating+" Comment: "+plans[i].comment+"</li>")
+        $('div.profile').append("<li id ="+plans[i].id+"> Date: " +plans[i].date + "<br>" + " Rating: "+ plans[i].rating+" Comment: "+plans[i].comment+"</li>")
           $.ajax({
             url: "/plans/"+plans[i].id,
             type: 'GET',
             }).done(function(response){
             activities = response.activities
             for (var i= 0; i < activities.length; i ++){ 
-                $('div.profile').append("<li>Activities: " + activities[i].name + "<br></li>");
+                $('#'+response.id).append("<li>Activities: " + activities[i].name + "<br></li>");
                 
             }
           })
