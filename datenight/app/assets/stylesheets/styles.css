@@ -1,20 +1,27 @@
-@import url(http://fonts.googleapis.com/css?family=Wire+One|Oswald:400,700,300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Wire+One|Oswald:400,700,300);
 
-body {
-background: url('../images/construction_wall.jpg') no-repeat center center fixed; 
-color: white;
-}
+  body {
+  background-color: black;
+  font-family: 'Open Sans', sans-serif;
+}  
+#planspage a {
+  color: #CC0000;
+}    
 
 #splashpage { 
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
 background-size: cover;
-background-color: black;
 color: #fff;
 transition: background 2s ease-in-out;
 -moz-transition: background 2s ease-in-out;
 -webkit-transition: background 2s ease-in-out;
+}
+
+#middle {
+  background-color: rgba(0, 1, 0, 0.7); 
+  border-radius: 5px;
 }
 
 #splashpage h1 {
@@ -27,29 +34,128 @@ transition: background 2s ease-in-out;
   padding-bottom: 25px;
 }
 
+#splashpage h2 {
+  text-align: center;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  padding-bottom: 50px;
+}
+
 #splashpage h3 {
   text-shadow: black 0.1em 0.1em 0.2em;
+  text-align: center;
 }
 
 #splashpage button {
  margin-left: 40%;
 }
 
-/*#drop { 
-  width: 150px; 
-  height: 150px;  
+#splashpage p.error {
+  color: #CC0000;
+  font-weight: bold;
 }
 
-.size {
+#splashpage p.join_now {
+  text-align: center;
+  padding-top: 10px;
+}
+
+/*#splashpage a {
+  color: #CC0000  ;
+}*/
+
+.noshow {
+  display: none;
+}
+
+# new {
+  margin-left: 100px;
+}
+
+/*.results {  
+  height: 85px;
+  color: black;
+  padding-top: 5px;
+  font-size: 16px;
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}*/
+
+.result {  
+  height: 85px;
+  color: black;
+  padding-top: 5px;
+  /*padding-left: 10px;*/
+  font-size: 16px;
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.notes {  
+  height: 225px;
+/*  margin-left: 25px;*/
+  margin-right: 50px;
+  background-color: white;  
+  border-radius: 5px;
+  font-family: 'Oswald', sans-serif;
+  color: black;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 25px;
+  padding: 20px;
+}
+
+.neighborhood {
+  height: 45px;
+  background-color: white;
+  color: black;
+  margin-left: 120%;
+}
+
+#drop ul {
+  list-style-type: none;
+}
+
+.newDate {
+  text-transform: uppercase;
+}
+
+button.searchAgain {
+  margin-left: 35%;
+  margin-bottom: 20px;
+  color: white;
+  background-color: #CC0000;
+  border-radius: 5px;
+}
+
+button#save {
+  color: white;
+  background-color: #CC0000;
+  border-radius: 5px;
+}
+
+.calendar {
+  margin-left: 35%;
+}
+
+#save {
+ margin-left: 37%; 
+}
+
+ul {
+  list-style-type: square;
+}
+
+/*.size {
   width: 250px;
-}
+}*/
 
-#new {
-  top: 0px;
-  height: 300px;
-}
+/*#new {
+  margin-left: 10px;
+}*/
 
-#board {
+/*#board {
   bottom: 0px;
   height: 200px;
   width: 300px;
@@ -57,17 +163,38 @@ transition: background 2s ease-in-out;
 
 }*/
 
-#middle {
- /* background-color:rgba(255,0,0,0.5);*/
+
+#planspage {
+background: url('../images/construction_wall.jpg') no-repeat center center fixed; 
 }
+
+#planspage h2 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  text-align: center;
+}
+
+#planspage h3 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  text-align: center;
+}
+
+/*#planspage a {
+  color: #CC0000;
+}*/
 
 .top_nav {
   background-color: rgba(0, 1, 0, 0.7);  
   text-align: right;
   color: white;
   height: 50px;
-  margin-left: -85px;
-  margin-right: -68px;
+  margin-left: -65px;
+  margin-right: -58px;
   padding-left: 25px;
   padding-top: 5px;
   padding-right: 10px;
@@ -82,12 +209,22 @@ transition: background 2s ease-in-out;
 }
 
 .top_nav button {
-  height: 25px;
   font-size: 12px;
 }
 
 #date {
   float: left;
+}
+
+.profile {
+  color: white;
+  text-align: center;
+  font-size: 18px;
+}
+
+.profile li {
+  list-style-type: none;
+  padding: 10px;
 }
 
 h1 {
@@ -99,36 +236,19 @@ h1 {
   color: white;
   padding-top: 25px;
   padding-bottom: 25px;
+  color: white;
 }
 
 button.search {
+  font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   height: 200px;
   width: 200px;
   margin-top: 50px;
-  margin-left: 220%;
+  margin-left: 120%;
   border: 1px white;
   border-radius: 100px;
-  background-color: red;
+  background-color: #CC0000;
   color: white;
   font-size: 50px;
 }
-
-/*.neighborhood {
-  height: 25px;
-  background-color: white;
-  color: black;
-  margin-left: 10%;
-}
-
-.results {
-background-color: white;
-border-radius: 10px;
-color: black;
-}*/
-
-/*.name {
-background-color: white;
-border-radius: 10px;
-color: black;
-}*/
