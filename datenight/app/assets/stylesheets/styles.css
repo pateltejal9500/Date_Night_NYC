@@ -1,12 +1,17 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans|Wire+One|Oswald:400,700,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Wire+One|Oswald:400,700,300);
 
-  body {
+body {
   background-color: black;
   font-family: 'Open Sans', sans-serif;
 }  
-#planspage a {
-  color: #CC0000;
-}    
+
+.footer {
+  color: #fff;
+}
+
+button {
+  text-transform: uppercase;
+}  
 
 #splashpage { 
 -webkit-background-size: cover;
@@ -46,7 +51,7 @@ transition: background 2s ease-in-out;
 }
 
 #splashpage button {
- margin-left: 40%;
+margin-left: 40%;
 }
 
 #splashpage p.error {
@@ -60,18 +65,14 @@ transition: background 2s ease-in-out;
 }
 
 /*#splashpage a {
-  color: #CC0000  ;
+  color: #CC0000;
 }*/
 
 .noshow {
   display: none;
 }
 
-# new {
-  margin-left: 100px;
-}
-
-/*.results {  
+#results {  
   height: 85px;
   color: black;
   padding-top: 5px;
@@ -79,13 +80,20 @@ transition: background 2s ease-in-out;
   background-color: white;
   border-radius: 5px;
   margin-bottom: 10px;
-}*/
+}
+
+.theDate {
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  text-transform: uppercase;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
 
 .result {  
   height: 85px;
   color: black;
   padding-top: 5px;
-  /*padding-left: 10px;*/
   font-size: 16px;
   background-color: white;
   border-radius: 5px;
@@ -94,8 +102,6 @@ transition: background 2s ease-in-out;
 
 .notes {  
   height: 225px;
-/*  margin-left: 25px;*/
-  margin-right: 50px;
   background-color: white;  
   border-radius: 5px;
   font-family: 'Oswald', sans-serif;
@@ -110,7 +116,7 @@ transition: background 2s ease-in-out;
   height: 45px;
   background-color: white;
   color: black;
-  margin-left: 120%;
+  margin-left: 132%;
 }
 
 #drop ul {
@@ -119,53 +125,74 @@ transition: background 2s ease-in-out;
 
 .newDate {
   text-transform: uppercase;
+  text-align: center;
 }
 
 button.searchAgain {
-  margin-left: 35%;
+  margin-left: 30%;
   margin-bottom: 20px;
   color: white;
   background-color: #CC0000;
   border-radius: 5px;
 }
 
+button#save_continue {
+  color: white;
+  background-color: #CC0000;
+  border-radius: 5px;
+  margin-left: 35%;
+}
+
 button#save {
   color: white;
   background-color: #CC0000;
   border-radius: 5px;
+  margin-left: 20%;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+button#edit {
+  color: white;
+  background-color: #CC0000;
+  border-radius: 5px;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+button#delete {
+  color: white;
+  background-color: #CC0000;
+  border-radius: 5px;
+  padding-right: 5px;
+  display: inline-block;
+}
+
+.button_strip button {
+  color: white;
+  background-color: #CC0000;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-left: 20px;
+  display: inline-block;
 }
 
 .calendar {
   margin-left: 35%;
+  color: black;
 }
 
-#save {
- margin-left: 37%; 
+#none {
+color:black;
+text-transform: uppercase;
 }
 
 ul {
   list-style-type: square;
 }
 
-/*.size {
-  width: 250px;
-}*/
-
-/*#new {
-  margin-left: 10px;
-}*/
-
-/*#board {
-  bottom: 0px;
-  height: 200px;
-  width: 300px;
-  border: 1px black;
-
-}*/
-
-
 #planspage {
-background: url('../images/construction_wall.jpg') no-repeat center center fixed; 
+background: url('../images/nyc_night.jpg') no-repeat center center fixed; 
 }
 
 #planspage h2 {
@@ -184,20 +211,19 @@ background: url('../images/construction_wall.jpg') no-repeat center center fixed
   text-align: center;
 }
 
-/*#planspage a {
+#planspage a {
   color: #CC0000;
-}*/
+}
 
 .top_nav {
-  background-color: rgba(0, 1, 0, 0.7);  
+  background-color: rgba(255, 255, 255, 0.1);  
   text-align: right;
   color: white;
-  height: 50px;
-  margin-left: -65px;
-  margin-right: -58px;
+  height: 45px;
+ margin-left: -65px;
+  margin-right: -18px;
   padding-left: 25px;
   padding-top: 5px;
-  padding-right: 10px;
 }
 
 .top_nav img {
@@ -227,6 +253,14 @@ background: url('../images/construction_wall.jpg') no-repeat center center fixed
   padding: 10px;
 }
 
+.profile a {
+  font-weight: bold;
+}
+
+hr {
+width: 200px;
+}
+
 h1 {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
@@ -245,7 +279,7 @@ button.search {
   height: 200px;
   width: 200px;
   margin-top: 50px;
-  margin-left: 120%;
+  margin-left: 132%;
   border: 1px white;
   border-radius: 100px;
   background-color: #CC0000;

@@ -42,14 +42,14 @@ $('.user_icon').on('click', function(e) {
       $('div.profile').append("<h2>Welcome, "  + response["fname"] + "!</h2>" + "<h3>Your History of Plans:</h3>"); 
       for (var i = 0; i < plans.length; i++) {
         if (plans[i].done == true){
-        $('div.profile').append("<li class='profile_list' id ="+plans[i].id+"><strong>Date:</strong> " +plans[i].date + "<br>" + " <strong>Rating:</strong> "+ plans[i].rating+"<br><strong>Comment:</strong> "+plans[i].comment+"</li>")
+        $('div.profile').append("<li class='profile_list' id ="+plans[i].id+"><strong>Date:</strong> " +plans[i].date + "<br>" + " <strong>Rating:</strong> "+ plans[i].rating+"<br><strong>Comment:</strong> "+plans[i].comment+"</li><hr>")
           $.ajax({
             url: "/plans/"+plans[i].id,
             type: 'GET',
             }).done(function(response){
             activities = response.activities
             for (var i= 0; i < activities.length; i ++){ 
-                $('#'+response.id).append("<li class='profile_list'><strong>Activities:</strong> " + activities[i].name + "</li>");
+                $('#'+response.id).append("<li class='profile_list'><strong>Activities: </strong><a href='"+activities[i].url+"' target='_blank'>"+activities[i].name + "</a></li>");
                 
             }
           })
@@ -63,12 +63,18 @@ $('.user_icon').on('click', function(e) {
 //loading the date tab where you can add a new date or see all the previous ones
 function datesLoad1(){
   $.get("/plans", function(user){
-    var innards = "<div class='dropdown'><button class='btn btn-default dropdown-toggle style' type='button' id='dropdownMenu1' data-toggle='dropdown'>Dates</button><ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>"
+    var innards = "<div class='dropdown'><button class='btn btn-default dropdown-toggle style' type='button' id='dropdownMenu1' data-toggle='dropdown'>Your Saved Dates</button><ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>"
       for (var i =0; i < user.plans.length; i ++){
         if (user.plans[i].done == false){
           innards += "<li role='presentation'><a id=" + user.plans[i].id + " class ='contact' role='menuitem' tabindex='-1' href='#'>" + user.plans[i].date+ "</a></li>"
         }
       } 
+       $("#date").html(innards) 
+
+      if ($(".contact").length == 0){
+        innards += "<li id='none'role='presentation'>No Dates Planned</li>"
+      }
+
     innards += "<li role='presentation' class='divider'></li><li role='presentation'><a class='newDate'role='menuitem' tabindex='-1' href='#'>Plan a New Date</a></li></div>"
 
     $("#date").html(innards)  
@@ -129,6 +135,9 @@ function makeNeighborhood1(){
 function planDate1(){
   $('.search').click(function(event){
    var neighborhood_id = $("[name='neighborhood']").val()
+   if (neighborhood_id == "Select a neighborhood"){
+    alert("You Have To Pick A Neighborhood")
+   } else {
    $.ajax({
     url: '/events',
     type: 'GET',
@@ -138,15 +147,16 @@ function planDate1(){
       puttingResultsOn1(result, neighborhood_id)
     }
    })
+ }
   })
 }
 
 //this is putting the board to drag items on, it is also adding anything dragged here onto it and making it draggable if anyone wants to put it back to its old place
 function puttingBoardOn1(neighborhood_id,date){
   if (date){
-    $('#board').html("<h2>Make a Plan</h2><h3>Drag and Drop Your Selections Here</h3><div id='drop' class='notes'></div><h2>Choose a Date</h2><p class='calendar'><input type='date' name='date' value="+date+"></p><button id='save'>Save and Continue</button>")
+    $('#board').html("<h2>Make a Plan</h2><h3>Drag and Drop Your Selections Here</h3><div id='drop' class='notes'></div><h2>Choose a Date</h2><p class='calendar'><input type='date' name='date' value="+date+"></p><button id='save_continue'>Save and Continue</button>")
   } else {
-    $('#board').html("<h2>Make a Date</h2><h3>Drag and Drop Your Selections Here</h3><div id='drop' class='notes'></div><h2>Choose a Date</h2><p class='calendar'><input type='date' name='date'></p><p><button id='save'>Save and Continue</button></p>")
+    $('#board').html("<h2>Make a Date</h2><h3>Drag and Drop Your Selections Here</h3><div id='drop' class='notes'></div><h2>Choose a Date</h2><p class='calendar'><input type='date' name='date'></p><p><button id='save_continue'>Save and Continue</button></p>")
   }
   $('#board').droppable({
     // activeClass: "ui-state-default",
@@ -163,25 +173,30 @@ function puttingBoardOn1(neighborhood_id,date){
 
 //once you press save, it is making sure that you have a date and if you do, it will display everything on the second page
 function gettingInfo(neighborhood_id){
-  $("#save").click(function(event){
+  $("#save_continue").click(function(event){
    if ($("input[name='date']").val() == ""){
       alert("Please Enter a Date")
     } else {
     var date = $("input[name='date']").val()
     var info = $(".results")
+    if (info.length == 0){
+      alert("You Have To Pick Something")
+    } else {
     secondPage(neighborhood_id,date,info) 
+  }
     }
   })
 }
 
 //making the second page with all the buttons, if a person presses a date from the date tab it also just comes here
 function secondPage(neighborhood_id,date,info,id){
+  $("#board").html("")
   $("#new").html("<div class='theDate'>Date: " + date + "</div>")
   for (var i = 0; i < info.length; i++){
-    $("#new").append("<div class='results'>"+info[i].innerHTML+"</div>")
+    $("#new").append("<div id='results' class='results'>"+info[i].innerHTML+"</div>")
    }
   $("#new").append("<button id='save'>Save</button><button id='edit'>Edit Date</button><button id='delete'>Delete</button>")
-  $("#board").html("<button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#invite'>Invite</button><button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#remind'>Email Me</button><button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#done'>Mark as Done</button>")
+  $("#new").append("<div class='button_strip'><button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#invite'>Send Invite</button><button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#remind'>Remind Me</button><button class = 'btn btn-primary btn-sm' data-toggle='modal' data-target='#done'>Mark Done</button></div>")
   done(id)
   invite()
   remind(date)
@@ -195,6 +210,7 @@ function secondPage(neighborhood_id,date,info,id){
 function deletingButton(id){
   $("#delete").click(function(event){
     deleting(id)
+    alert("Date Has Been Deleted!")
     datesLoad1()
     makeNeighborhood1()
     $("#new").html("")
@@ -217,10 +233,8 @@ function deleting(id){
 //when you press edit, it will delete the information and regenerate it on the first page for you to edit
 //it deletes it when you save it, it will add it to the database again
 function editInformation(neighborhood_id,date,id){
-  console.log("here")
   info = $(".results")
   $("#edit").click(function(event){
-
    deleting(id)
    results =[]
    for( var i = 0; i < info.length; i ++){
@@ -236,7 +250,7 @@ function editInformation(neighborhood_id,date,id){
 
 //this is the modal for the done button
 function done(id){
- $("#board").append("<div class='modal fade' id='done' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>Hope You Enjoyed Your Date!!</h4></div><div class='modal-body'><textarea id = 'text' rows='4' cols='50' placeholder='comments'></textarea><input type='text' name='rating' placeholder='rating 1 -10'></input></div><div class='modal-footer'><button type='button' class='btn btn-default closedone' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary done'>Mark As Done</button></div></div></div></div>")
+ $("#board").append("<div class='modal fade' id='done' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>Hope You Enjoyed Your Date!!</h4></div><div class='modal-body'><textarea id = 'text' rows='4' cols='50' placeholder='Comments'></textarea><input type='text' name='rating' placeholder='Rate Your Date 1 -10'></input></div><div class='modal-footer'><button type='button' class='btn btn-default closedone' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary done'>Mark As Done</button></div></div></div></div>")
   doneDate(id)
 }
 
@@ -268,9 +282,10 @@ function savingInformation(neighborhood_id, date,id){
   $("#save").click(function(event){
     if(id){
        $("#new").html("")
-          $("#board").html("")
-    datesLoad1()
-     makeNeighborhood1()
+       $("#board").html("")
+      datesLoad1()
+      makeNeighborhood1()
+      alert("Date Has Been Saved!")
 
     } else {
 
@@ -279,6 +294,7 @@ function savingInformation(neighborhood_id, date,id){
      type: 'POST',
      data: {neighborhood_id: neighborhood_id, date: date},
      success: function(result){
+      alert("Date Has Been Saved!")
      var results = $(".results")
      for (var i = 0; i < results.length; i ++){
        name = $(".name")[i].innerText
@@ -290,7 +306,7 @@ function savingInformation(neighborhood_id, date,id){
          data: {plan_id: result.id, name: name, url: url, rating:rating},
          success: function(result){
           $("#new").html("")
-          $("#board").html("")
+          $("#board").html("")  
          }
        })
      }

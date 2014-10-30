@@ -5,7 +5,6 @@ class NeighborhoodsController < ApplicationController
     respond_to do |format|
     format.json {render :json => Neighborhood.all}
     end 
-
   end
   
   private
