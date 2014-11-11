@@ -18,3 +18,6 @@ https://sendgrid.com/docs/API_Reference/Web_API/index.html
 
 Technologies used:
 Ruby on Rails, Javascript, JQuery, JQueryUI, HTML, CSS, and Bootstrap
+
+To View [Date Night NYC][link]
+[link]: https://guarded-ravine-5367.herokuapp.com/
