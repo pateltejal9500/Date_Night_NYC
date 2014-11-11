@@ -12,9 +12,6 @@ in order of apperance -->
 [tp]: https://github.com/pateltejal9500/
 [bd]: https://github.com/brendee 
 
-Trello board:
-https://trello.com/b/oOFNdBCj/date-night-out-nyc-app
-
 APIs used for this project:
 http://www.yelp.com/developers/
 https://sendgrid.com/docs/API_Reference/Web_API/index.html
