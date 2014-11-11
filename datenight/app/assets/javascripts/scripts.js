@@ -42,7 +42,7 @@ $('.user_icon').on('click', function(e) {
       $('div.profile').append("<h2>Welcome, "  + response["fname"] + "!</h2>" + "<h3>Your History of Plans:</h3>"); 
       for (var i = 0; i < plans.length; i++) {
         if (plans[i].done == true){
-        $('div.profile').append("<li class='profile_list' id ="+plans[i].id+"><strong>Date:</strong> " +plans[i].date + "<br>" + " <strong>Rating:</strong> "+ plans[i].rating+"<br><strong>Comment:</strong> "+plans[i].comment+"</li><hr>")
+        $('div.profile').append("<li class='profile_list' id ="+plans[i].id+"><strong>Date:</strong> " +moment(plans[i].date).format('MMMM Do YYYY') + "<br>" + " <strong>Rating:</strong> "+ plans[i].rating+"<br><strong>Comment:</strong> "+plans[i].comment+"</li><hr>")
           $.ajax({
             url: "/plans/"+plans[i].id,
             type: 'GET',
@@ -66,7 +66,8 @@ function datesLoad1(){
     var innards = "<div class='dropdown'><button class='btn btn-default dropdown-toggle style' type='button' id='dropdownMenu1' data-toggle='dropdown'>Your Saved Dates</button><ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>"
       for (var i =0; i < user.plans.length; i ++){
         if (user.plans[i].done == false){
-          innards += "<li role='presentation'><a id=" + user.plans[i].id + " class ='contact' role='menuitem' tabindex='-1' href='#'>" + user.plans[i].date+ "</a></li>"
+          console.log
+          innards += "<li role='presentation'><a id=" + user.plans[i].id + " class ='contact' role='menuitem' tabindex='-1' href='#'>" + moment(user.plans[i].date).format('MMMM Do YYYY') + "</a></li>"
         }
       } 
        $("#date").html(innards) 
