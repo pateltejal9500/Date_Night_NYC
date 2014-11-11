@@ -16,4 +16,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery-ui
+//= require moment
 //= require_tree .
+
