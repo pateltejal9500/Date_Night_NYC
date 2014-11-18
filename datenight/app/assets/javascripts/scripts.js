@@ -42,7 +42,7 @@ $('.user_icon').on('click', function(e) {
       $('div.profile').append("<h2>Welcome, "  + response["fname"] + "!</h2>" + "<h3>Your History of Plans:</h3>"); 
       for (var i = 0; i < plans.length; i++) {
         if (plans[i].done == true){
-        $('div.profile').append("<li class='profile_list' id ="+plans[i].id+"><strong>Date:</strong> " +moment(plans[i].date).format('MMMM Do YYYY') + "<br>" + " <strong>Rating:</strong> "+ plans[i].rating+"<br><strong>Comment:</strong> "+plans[i].comment+"</li><hr>")
+        $('div.profile').append("<li class='profile_list' id ="+plans[i].id+"><strong>Date:</strong> " + moment(plans[i].date).format('MMMM Do YYYY') + "<br>" + " <strong>Rating:</strong> "+ plans[i].rating+"<br><strong>Comment:</strong> "+plans[i].comment+"</li><hr>")
           $.ajax({
             url: "/plans/"+plans[i].id,
             type: 'GET',
@@ -192,7 +192,7 @@ function gettingInfo(neighborhood_id){
 //making the second page with all the buttons, if a person presses a date from the date tab it also just comes here
 function secondPage(neighborhood_id,date,info,id){
   $("#board").html("")
-  $("#new").html("<div class='theDate'>Date: " + date + "</div>")
+  $("#new").html("<div class='theDate'>Date: " + moment(date).format('MMMM Do YYYY') + "</div>")
   for (var i = 0; i < info.length; i++){
     $("#new").append("<div id='results' class='results'>"+info[i].innerHTML+"</div>")
    }
@@ -324,7 +324,7 @@ function savingInformation(neighborhood_id, date,id){
 function informationstuff(date){
   var info = $(".results")
 
-    var innards = "Date: " + date
+    var innards = "Date: " + moment(date).format('MMMM Do YYYY')
   for (var i = 0; i < info.length; i++){
     innards += "\nLink: " +info[i].children[0].children[0].children[0].children[0].href+"\nName: "+ info[i].children[0].children[0].children[0].innerText + "\n "+ info[i].children[0].children[0].children[1].innerText
    }
