@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
   before_action :authorize_user
 
   def index
-     @user = User.find_by(id: session[:user_id])
      if params[:email]
       email = params[:email]
       subject = "You have been invited!"

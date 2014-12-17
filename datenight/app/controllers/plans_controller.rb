@@ -2,7 +2,6 @@ class PlansController < ApplicationController
   before_action :authorize_user
 
   def index
-    @user = User.find_by(id: session[:user_id])
     respond_to do |format|
       format.json {render :json => @user, :include =>:plans}
       format.html {render :index}
