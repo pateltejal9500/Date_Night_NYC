@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authorize_user
 
   def index
     neighborhood = Neighborhood.find(params[:neighborhood])
